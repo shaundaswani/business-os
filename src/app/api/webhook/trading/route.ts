@@ -21,8 +21,11 @@ function timingSafeEqual(a: string, b: string): boolean {
 }
 
 export async function POST(request: NextRequest) {
-  // 1. Validate webhook secret
-  const incomingSecret = request.headers.get('x-webhook-secret') ?? ''
+  // 1. Validate webhook secret (query param preferred for TradingView; header as fallback)
+  const incomingSecret =
+    request.nextUrl.searchParams.get('secret') ??
+    request.headers.get('x-webhook-secret') ??
+    ''
   const expectedSecret = process.env.WEBHOOK_SECRET ?? ''
 
   if (!expectedSecret || !timingSafeEqual(incomingSecret, expectedSecret)) {
