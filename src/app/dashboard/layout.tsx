@@ -22,7 +22,7 @@ export default async function DashboardLayout({
       <div className="max-w-[920px] mx-auto px-4 pb-16">
         <Header
           userName="Shaun"
-          userRole="admin"
+          userRole="owner"
         />
         <CaptureBar />
         <TabBar />

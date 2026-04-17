@@ -12,7 +12,7 @@ import EquityChart from '@/components/ui/EquityChart'
 export const revalidate = 0 // always fresh from Supabase
 
 export default async function TradingPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const [tradesResult, signalsResult, profileResult] = await Promise.all([
     supabase
