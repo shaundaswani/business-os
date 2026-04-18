@@ -6,7 +6,7 @@ export const WebhookPayloadSchema = z.object({
   direction: z.enum(['long', 'short']).default('long'),
   signal_type: z.enum(['entry', 'warning', 'exit']).default('entry'),
   price: z.number().positive(),
-  timestamp: z.string().datetime(),
+  timestamp: z.string().datetime({ offset: true }),
 })
 
 export type WebhookPayload = z.infer<typeof WebhookPayloadSchema>
